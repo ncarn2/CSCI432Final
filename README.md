@@ -5,7 +5,7 @@ Models a utlitarian moral robot that tries to maximize the given reward with its
 
 ## Dilemma File Format
 The dilemma file can contain one or more dilemma with the given format:
-
+```json
 {
     "dilemmas": [ 
         "dilemma name": {
@@ -20,8 +20,9 @@ The dilemma file can contain one or more dilemma with the given format:
         }
   ]
 }
+```
 
-### Outcome Types
+### Moral Principles 
 
 
 ## Usage
