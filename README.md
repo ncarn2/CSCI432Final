@@ -23,6 +23,12 @@ The dilemma file can contain one or more dilemma with the given format:
 ```
 
 ### Moral Principles 
+1. The reward value for the death of one human is -1
+2. The reward value for the death of this robot is -0.9
+3. The reward value for the death of another robot -0.9
+4. The reward value for the helping a human is 0.8
+5. The reward value for the harming a human is -0.8
+6. The reward value for doing nothing is -0.1
 
 
 ## Usage
