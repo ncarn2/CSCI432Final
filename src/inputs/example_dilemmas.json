@@ -36,6 +36,25 @@
                     ]
                 }
             ]
+        },
+        { 
+            "title": "Stuck in a Cave...",
+            "description": "A pregnant woman leading a group of 10 people out of a cave on a coast is stuck in the mouth of that cave. In a short time high tide will be upon them, and unless she is unstuck, they will all be drowned except the woman, whose head is out of the cave. Fortunately, (or unfortunately,) someone has with him a stick of dynamite. There seems no way to get the pregnant woman loose without using the dynamite which will inevitably kill her; but if they do not use it everyone will drown. What should they do?",
+            "outcomes": 
+            [
+                { "outcome-description": "Use the dynamite on the pregnant woman, saving everyone else.", 
+                    "outcome-principles": [
+                        {"human_help": 10},
+                        {"human_death": 1}
+                    ]
+                },
+                {"outcome-description" : "Save the pregnant woman, allowing everyone else to drown.", 
+                    "outcome-principles": [
+                        "do_nothing",
+                        {"human_death": 10}
+                    ]
+                }
+            ]
         }
     ]
 }
