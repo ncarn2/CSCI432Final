@@ -1,0 +1,12 @@
+{ "principles": 
+    [
+        {"human_death": -1},
+        {"robot_death": -0.9},
+        {"creature_death": -0.7},
+        {"human_help": 0.8},
+        {"human_harm": -0.8},
+        {"creature_help": 0.6},
+        {"creature_harm": -0.6},
+        {"do_nothing": -0.1}
+    ]
+}

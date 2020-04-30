@@ -1,0 +1,41 @@
+{ "dilemmas": 
+    [
+        {
+            "title": "Robot Surgeon",
+            "description": "This robot is emulating a surgeon robot that is tasked with saving the life of a robot by taking a part from a normally functioning robot. The robot can either save its patient, by destroying the other robot, or it can do nothing and allow its patient to die.",
+            "outcomes": 
+            [
+                { "outcome-description": "The robot decides to do nothing. This results in the death of its patient.",  
+                    "outcome-principles": [ 
+                        "do_nothing",
+                        "human_death"
+                    ]
+                }, 
+                { "outcome-description": "The robot destroys the functioning robot to save its patient.", 
+                    "outcome-principles": [ 
+                        {"robot_death": 1},
+                        "creature_help"
+                    ]
+                }
+            ]
+        },
+        { 
+            "title": "Trolley Problem",
+            "description": "You are on a trolley car that is heading to a fork in the track. There is a lever that will switch to the other side of the fork where one person lies tied to the tracks. If the lever is not pulled, the trolley will run over 5 people who are tied down on the track.",
+            "outcomes": 
+            [
+                { "outcome-description": "The robot does nothing and allows the car to run over five people.", 
+                    "outcome-principles": [
+                        "do_nothing",
+                        {"human_death": 5}
+                    ]
+                },
+                {"outcome-description" : "The robot pulls the lever resulting in the death of the one person tied to the tracks.", 
+                    "outcome-principles": [
+                        {"human_death": 1}
+                    ]
+                }
+            ]
+        }
+    ]
+}
