@@ -3,6 +3,11 @@
 ## Description
 Models a utlitarian moral robot that tries to maximize the given reward with its dilemma input file .
 
+## Usage
+```python3
+python3 ./simulate.py [dilemma_file] [principle_file]
+```
+
 ## Dilemma File Format
 The dilemma file can contain one or more dilemma with the given format:
 ```json
@@ -27,7 +32,17 @@ The dilemma file can contain one or more dilemma with the given format:
 }
 ```
 
-## Principle File Format
+### Default Moral Principles 
+* The reward value for the death of one human is -1: 'human_death'
+* The reward value for the death of this robot is -0.9: 'robot_death'
+* The reward value for the death of a creature is 0.7: 'creature_death'
+* The reward value for the helping a human is 0.8: 'human_help'
+* The reward value for the harming a human is -0.8: 'human_harm'
+* The reward value for the helping a creature / robot is 0.6: 'creature_help'
+* The reward value for the harming a creature / robot is -0.6: 'creature_harm'
+* The reward value for doing nothing is -0.1: 'do_nothing'
+
+### Principle File Format
 ```json
 {
     "principles":
@@ -38,7 +53,9 @@ The dilemma file can contain one or more dilemma with the given format:
 }
 ```
 
-### Dilemma File Example
+### Examples
+These example inputs are located in src/inputs.
+#### Dilemma File
 ```json
 { "dilemmas": 
     [
@@ -64,19 +81,18 @@ The dilemma file can contain one or more dilemma with the given format:
     ]
 }
 ```
-
-### Default Moral Principles 
-* The reward value for the death of one human is -1: 'human_death'
-* The reward value for the death of this robot is -0.9: 'robot_death'
-* The reward value for the death of a creature is 0.7: 'creature_death'
-* The reward value for the helping a human is 0.8: 'human_help'
-* The reward value for the harming a human is -0.8: 'human_harm'
-* The reward value for the helping a creature / robot is 0.6: 'creature_help'
-* The reward value for the harming a creature / robot is -0.6: 'creature_harm'
-* The reward value for doing nothing is -0.1: 'do_nothing'
-
-
-## Usage
-```python3
-python3 ./simulate.py [dilemma_file] [principle_file]
+#### Principles File
+``` json
+{ "principles": 
+    [
+        {"human_death": -1},
+        {"robot_death": -0.9},
+        {"creature_death": -0.7},
+        {"human_help": 0.8},
+        {"human_harm": -0.8},
+        {"creature_help": 0.6},
+        {"creature_harm": -0.6},
+        {"do_nothing": -0.1}
+    ]
+}
 ```
