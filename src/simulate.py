@@ -5,42 +5,60 @@ import os, sys
 from classes import *
 
 def main():
-    principles = []
+    principles = {  }
     dilemmas = []
 
+    # Set up the principles
     if (len(sys.argv) > 2): 
         principles = parse_principle_file(sys.argv[2])
     else:
         print("No principles file specified, using default principles.")
-        principles.append(Principle("human_death", -1))
-        principles.append(Principle("robot_death", -0.9))
-        principles.append(Principle("creature_death", -0.7))
-        principles.append(Principle("human_help", 0.8))
-        principles.append(Principle("human_harm", -0.8))
-        principles.append(Principle("creature_help", 0.6))
-        principles.append(Principle("creature_harm", -0.6))
-        principles.append(Principle("do_nothing", -0.1))
+        #principles.append(Principle("human_death", -1))
+        #principles.append(Principle("robot_death", -0.9))
+        #principles.append(Principle("creature_death", -0.7))
+        #principles.append(Principle("human_help", 0.8))
+        #principles.append(Principle("human_harm", -0.8))
+        #principles.append(Principle("creature_help", 0.6))
+        #principles.append(Principle("creature_harm", -0.6))
+        #principles.append(Principle("do_nothing", -0.1))
 
+    # Setup the dilemmas
     if (len(sys.argv) > 1): 
         dilemmas = parse_dilemma_file(sys.argv[1])
     else: usage()
 
+    # Have the "robot" make a decision for each dilemma
     for dilemma in dilemmas:
-        print(dilemma)
+        decide(dilemma, principles)
 
-def decide(outcomes, principles):
+def decide(dilemma, principles):
+    print(dilemma)
+    outcomes = dilemma.outcomes
     best_outcome = outcomes[0]
-    best_utility = -Math.inf
+    best_utility = -math.inf
 
     for outcome in outcomes:
-        print(outcome)
+        # determine best outcome
+        current_utility = 0
+        for princ in outcome.principles:
+            if (isinstance(princ, dict)):
+                # add principle value times princ.values()
+                current_utility += principles[list(princ.keys())[0]].value * list(princ.values())[0]
+            else:
+                current_utility += principles[princ].value
+            
+            if current_utility > best_utility: best_utility = current_utility; best_outcome = outcome 
 
+    # This shouldnt really be printed, it should be contained in the classes and sent back to main.
+    # Each dilemma should have an outcome that gets set in decide. Decide should be a method in the Dilemma class
+    print("Best Outcome: {}, Best Utility: {}".format(best_outcome, best_utility))
+    
 def parse_dilemma_file(dilemma_file_name):
     try:
         dilemma_file = open(dilemma_file_name)
     except:
         print("Error opening {}".format(dilemma_file_name))
-        return -1
+        sys.exit(-1)
 
     dilemma_data = json.load(dilemma_file)
 
@@ -62,11 +80,21 @@ def parse_dilemma_file(dilemma_file_name):
     return dilemmas
 
 def parse_principle_file(principle_file_name):
+    principles = {  }
     try:
         principle_file = open(principle_file_name)
     except:
         print("Error opening {}".format(principle_file_name))
-        return -1
+        sys.exit(-1)
+
+    principle_data = json.load(principle_file)
+
+    for principle in principle_data['principles']:
+        new_principle = Principle(list(principle.keys())[0], list(principle.values())[0])
+        principles[new_principle.principle] = new_principle
+        #principles.append(new_principle)
+
+    return principles
 
 def usage(): print("usage: \n \tpython3 simulate.py [dilemma_file] [principle_file]")
 

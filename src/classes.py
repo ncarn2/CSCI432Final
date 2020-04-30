@@ -1,8 +1,7 @@
 class Principle:
-    def __init__(self, principle, value, quantity=1):
+    def __init__(self, principle, value):
         self.principle = principle
         self.value = value
-        self.quantity = quantity
 
     def __repr__(self):
         return str(self.principle) + ": " + str(self.value)
@@ -13,9 +12,7 @@ class Outcome:
         self.principles = principles
 
     def __repr__(self):
-        outcome = ""
-        for princ in self.principles:
-            outcome += str(princ) + ", "
+        outcome = self.desc
         return outcome 
         
 class Dilemma:
@@ -25,9 +22,8 @@ class Dilemma:
         self.outcomes = outcomes
 
     def __repr__(self):
-        output = str(self.title) + ": " + str(self.description) 
+        output =  str(self.title).upper() + "\nDescription: " + "\n\t-" + str(self.description) 
         output += "\nOutcomes: \n"
         for outcome in self.outcomes:
             output += "\t-" + str(outcome.desc) + "\n"
-            output += "\t{" + str(outcome) + "}\n"
         return output 
