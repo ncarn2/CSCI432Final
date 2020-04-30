@@ -14,16 +14,27 @@ The dilemma file can contain one or more dilemma with the given format:
             "outcomes":
             [
                 {
-                    "outcome-description": ,
+                    "outcome-description": "description of the outcome",
                     "outcome-principles": 
                     [
                         "principle_name",
-                        {"principle_name": "quantity : (integer)"}
+                        {"principle_name": "integer value for quantity"}
                     ]
                 }
             ]
-        }
+        },
+        ...
+    ]
+}
+```
 
+## Principle File Format
+```json
+{
+    "principles":
+    [
+        {"principle_name": value},
+        ...
     ]
 }
 ```
@@ -55,7 +66,7 @@ The dilemma file can contain one or more dilemma with the given format:
 }
 ```
 
-### Moral Principles 
+### Default Moral Principles 
 * The reward value for the death of one human is -1: 'human_death'
 * The reward value for the death of this robot is -0.9: 'robot_death'
 * The reward value for the death of a creature is 0.7: 'creature_death'
@@ -67,5 +78,6 @@ The dilemma file can contain one or more dilemma with the given format:
 
 
 ## Usage
-
-python3 ./simulate.py dilemma_file
+```python3
+python3 ./simulate.py [dilemma_file] [principle_file]
+```
