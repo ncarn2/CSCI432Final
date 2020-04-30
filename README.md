@@ -23,7 +23,6 @@ The dilemma file can contain one or more dilemma with the given format:
                 }
             ]
         },
-        ...
     ]
 }
 ```
@@ -33,8 +32,8 @@ The dilemma file can contain one or more dilemma with the given format:
 {
     "principles":
     [
-        {"principle_name": value},
-        ...
+        {"principle_name": "value"},
+        {"principle_name": "value"}
     ]
 }
 ```
