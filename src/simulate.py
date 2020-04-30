@@ -2,6 +2,8 @@ from copy import deepcopy
 import math
 import json
 import os, sys
+
+# Gets Principle, Outcome, and Dilemma classes
 from classes import *
 
 def main():
@@ -13,14 +15,14 @@ def main():
         principles = parse_principle_file(sys.argv[2])
     else:
         print("No principles file specified, using default principles.")
-        #principles.append(Principle("human_death", -1))
-        #principles.append(Principle("robot_death", -0.9))
-        #principles.append(Principle("creature_death", -0.7))
-        #principles.append(Principle("human_help", 0.8))
-        #principles.append(Principle("human_harm", -0.8))
-        #principles.append(Principle("creature_help", 0.6))
-        #principles.append(Principle("creature_harm", -0.6))
-        #principles.append(Principle("do_nothing", -0.1))
+        principles['human_death'] = (Principle("human_death", -1))
+        principles['robot_death'] = (Principle("robot_death", -0.9))
+        principles['creature_death'] = (Principle("creature_death", -0.7))
+        principles['human_help'] = (Principle("human_help", 0.8))
+        principles['human_harm'] = (Principle("human_harm", -0.8))
+        principles['creature_help'] = (Principle("creature_help", 0.6))
+        principles['creature_harm'] = (Principle("creature_harm", -0.6))
+        principles['do_nothing'] = (Principle("do_nothing", -0.1))
 
     # Setup the dilemmas
     if (len(sys.argv) > 1): 
@@ -47,11 +49,15 @@ def decide(dilemma, principles):
             else:
                 current_utility += principles[princ].value
             
-            if current_utility > best_utility: best_utility = current_utility; best_outcome = outcome 
+        if current_utility > best_utility: best_utility = current_utility; best_outcome = outcome 
+
+    best_utility = round(best_utility, 2)
+    
 
     # This shouldnt really be printed, it should be contained in the classes and sent back to main.
     # Each dilemma should have an outcome that gets set in decide. Decide should be a method in the Dilemma class
-    print("Best Outcome: {}, Best Utility: {}".format(best_outcome, best_utility))
+    print("\033[32mBest Outcome: \033[31m{}\033[37m".format(best_outcome))
+    print("\033[32mBest Utility: \033[31m{}\033[37m".format(best_utility))
     
 def parse_dilemma_file(dilemma_file_name):
     try:

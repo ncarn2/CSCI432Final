@@ -1,3 +1,5 @@
+from term_colors import cprint 
+
 class Principle:
     def __init__(self, principle, value):
         self.principle = principle
@@ -22,8 +24,13 @@ class Dilemma:
         self.outcomes = outcomes
 
     def __repr__(self):
-        output =  str(self.title).upper() + "\nDescription: " + "\n\t-" + str(self.description) 
-        output += "\nOutcomes: \n"
+        output = ""
+        cprint("y", str(self.title).upper())
+        cprint("g", "Description:")
+        cprint("g", str(self.description))
+
+        cprint("b", "Outcomes:")
         for outcome in self.outcomes:
-            output += "\t-" + str(outcome.desc) + "\n"
+            cprint("b", ("\t- " + str(outcome.desc)))
+
         return output 

@@ -8,7 +8,7 @@
                 { "outcome-description": "The robot decides to do nothing. This results in the death of its patient.",  
                     "outcome-principles": [ 
                         "do_nothing",
-                        "human_death"
+                        {"human_death": 1}
                     ]
                 }, 
                 { "outcome-description": "The robot destroys the functioning robot to save its patient.", 
