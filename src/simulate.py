@@ -10,7 +10,7 @@ def main():
     principles = {  }
     dilemmas = []
 
-    # Set up the principles
+    # Get the principles out of the file, or generate defaults
     if (len(sys.argv) > 2): 
         principles = parse_principle_file(sys.argv[2])
     else:
@@ -24,15 +24,17 @@ def main():
         principles['creature_harm'] = (Principle("creature_harm", -0.6))
         principles['do_nothing'] = (Principle("do_nothing", -0.1))
 
-    # Setup the dilemmas
+    # Parse the dilemma file, or print usage
     if (len(sys.argv) > 1): 
         dilemmas = parse_dilemma_file(sys.argv[1])
     else: usage()
 
-    # Have the "robot" make a decision for each dilemma
+    # Make a decision for each dilemma and print it out. 
     for dilemma in dilemmas:
         decide(dilemma, principles)
 
+
+# basically a max() function
 def decide(dilemma, principles):
     print(dilemma)
     outcomes = dilemma.outcomes
@@ -52,14 +54,18 @@ def decide(dilemma, principles):
         if current_utility > best_utility: best_utility = current_utility; best_outcome = outcome 
 
     best_utility = round(best_utility, 2)
-    
 
     # This shouldnt really be printed, it should be contained in the classes and sent back to main.
     # Each dilemma should have an outcome that gets set in decide. Decide should be a method in the Dilemma class
     print("\033[32mBest Outcome: \033[31m{}\033[37m".format(best_outcome))
     print("\033[32mBest Utility: \033[31m{}\033[37m".format(best_utility))
     
+
 def parse_dilemma_file(dilemma_file_name):
+    """
+    Input: dilemma_file_name ("file.json")
+    Output: Dilemma() class
+    """
     try:
         dilemma_file = open(dilemma_file_name)
     except:
